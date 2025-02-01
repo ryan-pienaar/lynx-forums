@@ -1,0 +1,19 @@
+{
+    "name": "ryanp/lynx-mvc",
+    "autoload": {
+        "psr-4": {
+            "Ryanp\\LynxMvc\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ryan Pienaar"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {}
+}
