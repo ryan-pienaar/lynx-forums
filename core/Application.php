@@ -1,15 +1,22 @@
 <?php
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/PHPClass.php to edit this template
- */
-
 /**
  * Description of Application
  *
- * @author ryanp
+ * @author Ryan Pienaar
+ * @package app\core
  */
+
+namespace app\core;
+
 class Application {
-    //put your code here
+    
+    public Router $router;
+    public function __construct()
+    {
+        $this->router = new Router();
+    }
+    
+    public function run() {
+        $this->reouter->resolve();
+    }
 }

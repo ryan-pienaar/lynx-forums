@@ -1,15 +1,22 @@
 <?php
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/PHPClass.php to edit this template
- */
-
 /**
  * Description of Router
  *
- * @author ryanp
+ * @author Ryan Pienaar
+ * @package app\core
  */
+
+namespace app\core;
+
 class Router {
-    //put your code here
+    protected array $routes = [];
+    public function get($path, $callback)
+    {
+        $this->routes['get'][$path] = $callback;
+    }
+    
+    public function resolve()
+    {
+        
+    }
 }
