@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
+use app\core\Request;
 
 /**
  * Class LynxController
@@ -24,8 +25,9 @@ class LynxController extends Controller
     {
         return $this->render('contact');
     }
-    public function handleContactData(): string
+    public function handleContactData(Request $request)
     {
+        $body = $request->getBody();
         return 'Handling submitted contact data';
     }
 }
