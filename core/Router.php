@@ -27,6 +27,11 @@ class Router {
     {
         $this->routes['get'][$path] = $callback;
     }
+
+    public function post($path, $callback)
+    {
+        $this->routes['post'][$path] = $callback;
+    }
     
     public function resolve()
     {
@@ -35,7 +40,7 @@ class Router {
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
             $this->response->setStatusCode(404);
-            return "Not Found";
+            return $this->renderView("404");
         }
         if (is_string($callback)) {
             return $this->renderView($callback);
@@ -43,22 +48,32 @@ class Router {
         return call_user_func($callback);
     }
 
-    public function renderView($view)
+    public function renderView($view, $params = [])
     {
-        $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view);
+        $layoutContent = $this->renderLayout();
+        $viewContent = $this->renderOnlyViewContent($view, $params);
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
-    protected function layoutContent()
+    //Unused function - delete soon
+    public function renderContent($viewContent)
+    {
+        $layoutContent = $this->renderLayout();
+        return str_replace('{{content}}', $viewContent, $layoutContent);
+    }
+
+    protected function renderLayout()
     {
         ob_start();
         include_once Application::$ROOT_DIR . "/views/layouts/main.php";
         return ob_get_clean();
     }
 
-    protected function renderOnlyView($view)
+    protected function renderOnlyViewContent($view, $params)
     {
+        foreach ($params as $key => $value) {
+            $$key = $value;
+        }
         ob_start();
         include_once Application::$ROOT_DIR . "/views/$view.php";
         return ob_get_clean();
