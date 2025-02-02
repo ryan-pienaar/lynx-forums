@@ -7,12 +7,12 @@ use app\core\Controller;
 use app\core\Request;
 
 /**
- * Class LynxController
+ * Class SiteController
  *
  * @author Ryan Pienaar
  * @package app\controllers
  */
-class LynxController extends Controller
+class SiteController extends Controller
 {
     public function home()
     {

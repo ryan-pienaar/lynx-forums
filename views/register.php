@@ -5,13 +5,13 @@
         <div class="col">
             <div class="mb-3">
                 <label  class="form-label">Firstname</label>
-                <input type="text" class="form-control" name="firstname">
+                <input type="text" class="form-control" name="firstName">
             </div>
         </div>
         <div class="col">
             <div class="mb-3">
                 <label  class="form-label">Lastname</label>
-                <input type="text" class="form-control" name="lastname">
+                <input type="text" class="form-control" name="lastName">
             </div>
         </div>
     </div>
@@ -24,8 +24,8 @@
         <input type="password" class="form-control" name="password"> </input>
     </div>
     <div class="mb-3">
-        <label  class="form-label">Re-enter Password</label>
-        <input type="password" class="form-control" name="repassword"> </input>
+        <label  class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" name="confirmPassword"> </input>
     </div>
     <button type="submit" class="btn btn-primary">Register</button>
 </form>
