@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Application;
+use app\core\Controller;
 
 /**
  * Class LynxController
@@ -10,20 +11,20 @@ use app\core\Application;
  * @author Ryan Pienaar
  * @package app\controllers
  */
-class LynxController
+class LynxController extends Controller
 {
-    public static function home()
+    public function home()
     {
         $params = [
             'name' => 'Lynx Forums Software'
         ];
-        return Application::$app->router->renderView('home', $params);
+        return $this->render('home', $params);
     }
-    public static function contact()
+    public function contact()
     {
-        return Application::$app->router->renderView('contact');
+        return $this->render('contact');
     }
-    public static function handleContactData(): string
+    public function handleContactData(): string
     {
         return 'Handling submitted contact data';
     }
