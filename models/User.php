@@ -2,9 +2,9 @@
 
 namespace app\models;
 
-use app\core\DBModel;
+use app\core\UserModel;
 
-class User extends DBModel
+class User extends UserModel
 {
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
@@ -13,8 +13,8 @@ class User extends DBModel
     const STATUS_BANNED = 4;
 
     public string $username = '';
-    public string $firstName = '';
-    public string $lastName = '';
+    public string $firstname = '';
+    public string $lastname = '';
     public string $email = '';
     public int $status = self::STATUS_EMAIL_UNVERIFIED;
     public string $password = '';
@@ -23,6 +23,11 @@ class User extends DBModel
     public function tableName(): string
     {
         return 'users';
+    }
+
+    public function primaryKey(): string
+    {
+        return 'id';
     }
 
     public function save()
@@ -35,8 +40,8 @@ class User extends DBModel
     public function rules(): array
     {
         return [
-            'firstName' => [self::RULE_REQUIRED],
-            'lastName' => [self::RULE_REQUIRED],
+            'firstname' => [self::RULE_REQUIRED],
+            'lastname' => [self::RULE_REQUIRED],
             'username' => [self::RULE_REQUIRED,[self::RULE_MINLEN, 'minlen' => 6], [self::RULE_MAXLEN, 'maxlen' => 16], [self::RULE_UNIQUE, 'class' => self::class]],
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL, [self::RULE_UNIQUE, 'class' => self::class]],
             'password' => [self::RULE_REQUIRED, [self::RULE_MINLEN, 'minlen' => 8], [self::RULE_MAXLEN, 'maxlen' => 24]],
@@ -46,18 +51,23 @@ class User extends DBModel
 
     public function attributes() : array
     {
-        return ['username', 'firstName', 'lastName', 'email', 'password', 'status'];
+        return ['username', 'firstname', 'lastname', 'email', 'password', 'status'];
     }
 
     public function labels(): array
     {
         return [
             'username' => 'Username',
-            'firstName' => 'First Name',
-            'lastName' => 'Last Name',
+            'firstname' => 'First Name',
+            'lastname' => 'Last Name',
             'email' => 'Email',
             'password' => 'Password',
             'confirmPassword' => 'Confirm Password'
         ];
+    }
+
+    public function getDisplayName(): string
+    {
+        return $this->username;
     }
 }
