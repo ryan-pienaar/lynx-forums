@@ -1,23 +1,36 @@
 <?php
-/** User: Paprika...**/
 
-require_once __DIR__ . '/../vendor/autoload.php';
+/**
+ * @author Ryan Pienaar
+ */
 
 use app\controllers\SiteController;
 use app\controllers\AuthController;
-use app\core\Application;
+use app\core\Kernel;
 
-$app = new Application(dirname(__DIR__));
+require_once __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
+$conf = [
+    'db' => [
+        'dsn' => $_ENV['DB_DSN'],
+        'user' => $_ENV['DB_USER'],
+        'password' => $_ENV['DB_PASSWORD']
+    ]
+];
+
+$kernel = new Kernel(dirname(__DIR__), $conf);
 
 
-$app->router->get('/', [SiteController::class, 'home']);
-$app->router->get('/contact', [SiteController::class, 'contact']);
-$app->router->post('/contact', [SiteController::class, 'handleContactData']);
+$kernel->router->get('/', [SiteController::class, 'home']);
+$kernel->router->get('/contact', [SiteController::class, 'contact']);
+$kernel->router->post('/contact', [SiteController::class, 'handleContactData']);
 
-$app->router->get('/login', [AuthController::class, 'login']);
-$app->router->post('/login', [AuthController::class, 'login']);
-$app->router->get('/register', [AuthController::class, 'register']);
-$app->router->post('/register', [AuthController::class, 'register']);
+$kernel->router->get('/login', [AuthController::class, 'login']);
+$kernel->router->post('/login', [AuthController::class, 'login']);
+$kernel->router->get('/register', [AuthController::class, 'register']);
+$kernel->router->post('/register', [AuthController::class, 'register']);
 
 
-$app->run();
+$kernel->run();
