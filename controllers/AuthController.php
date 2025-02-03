@@ -17,6 +17,7 @@ class AuthController extends Controller
             $user->loadData($request->getBody());
 
             if ($user->validate() && $user->save()) {
+                Kernel::$kernel->session->setFlash('success', 'Thanks for registering!');
                 Kernel::$kernel->response->redirect('/');
             }
             return $this->render('register', [
