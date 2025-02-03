@@ -1,9 +1,17 @@
 <?php
 
+/**
+ * Class AuthController
+ *
+ * @package app\controllers
+ * @author Ryan Pienaar <ryan@ryanpienaar.dev>
+ */
+
 namespace app\controllers;
 
 use app\core\Controller;
 use app\core\Kernel;
+use app\core\middleware\AuthGate;
 use app\core\Request;
 use app\core\Response;
 use app\models\LoginForm;
@@ -11,6 +19,11 @@ use app\models\User;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        //Middleware
+        $this->registerGate(new AuthGate(['profile']));
+    }
     public function register(Request $request ,Response $response)
     {
 
@@ -49,4 +62,16 @@ class AuthController extends Controller
             'model' => $loginForm
         ]);
     }
+
+    public function logout(Request $request, Response $response)
+    {
+        Kernel::$kernel->logout();
+        $response->redirect('/');
+    }
+
+    public function profile()
+    {
+        return $this->render('profile');
+    }
+
 }
