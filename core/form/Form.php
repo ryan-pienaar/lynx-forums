@@ -2,6 +2,8 @@
 
 namespace app\core\form;
 
+use app\core\Model;
+
 class Form
 {
     public static function begin($action, $method)
