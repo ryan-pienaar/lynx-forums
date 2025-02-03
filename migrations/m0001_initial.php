@@ -9,8 +9,8 @@ class m0001_initial
             id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL,
-            firstname VARCHAR(255) NOT NULL,
-            lastname VARCHAR(255) NOT NULL,
+            firstName VARCHAR(255) NOT NULL,
+            lastName VARCHAR(255) NOT NULL,
             status TINYINT NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=INNODB;";
