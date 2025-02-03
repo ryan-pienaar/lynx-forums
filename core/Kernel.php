@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of Application
+ * Description of Kernel
  *
  * @author Ryan Pienaar
  * @package app\core
@@ -8,21 +8,26 @@
 
 namespace app\core;
 
-class Application {
+class Kernel {
 
     public static string $ROOT_DIR;
     public Router $router;
     public Request $request;
     public Response $response;
-    public static Application $app;
+    public Session $session;
+    public Database $db;
+    public static Kernel $kernel;
     public Controller $controller;
-    public function __construct($rootPath)
+    public function __construct($rootPath, array $conf)
     {
         self::$ROOT_DIR = $rootPath;
-        self::$app = $this;
+        self::$kernel = $this;
         $this->request = new Request();
         $this->response = new Response();
+        $this->session = new Session();
         $this->router = new Router($this->request, $this->response);
+
+        $this->db = new Database($conf['db']);
     }
     
     public function run() {
