@@ -1,31 +1,18 @@
 <h1>Register</h1>
 
-<form action="" method="post">
+<?php $form = \app\core\form\Form::begin('', "post") ?>
     <div class="row">
         <div class="col">
-            <div class="mb-3">
-                <label  class="form-label">Firstname</label>
-                <input type="text" class="form-control" name="firstName">
-            </div>
+            <?php echo $form->field($model, 'firstName') ?>
         </div>
         <div class="col">
-            <div class="mb-3">
-                <label  class="form-label">Lastname</label>
-                <input type="text" class="form-control" name="lastName">
-            </div>
+            <?php echo $form->field($model, 'lastName') ?>
         </div>
     </div>
-    <div class="mb-3">
-        <label  class="form-label">Email</label>
-        <input class="form-control" name="email"> </input>
-    </div>
-    <div class="mb-3">
-        <label  class="form-label">Password</label>
-        <input type="password" class="form-control" name="password"> </input>
-    </div>
-    <div class="mb-3">
-        <label  class="form-label">Confirm Password</label>
-        <input type="password" class="form-control" name="confirmPassword"> </input>
-    </div>
+
+    <?php echo $form->field($model, 'username') ?>
+    <?php echo $form->field($model, 'email') ?>
+    <?php echo $form->field($model, 'password')->passwordField() ?>
+    <?php echo $form->field($model, 'confirmPassword')->passwordField() ?>
     <button type="submit" class="btn btn-primary">Register</button>
-</form>
+<?php \app\core\form\Form::end() ?>
