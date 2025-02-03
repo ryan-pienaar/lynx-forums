@@ -9,6 +9,9 @@
 
 namespace app\core;
 
+use app\core\db\Database;
+use app\core\db\DBModel;
+
 class Kernel {
 
     public static string $ROOT_DIR;
@@ -20,7 +23,7 @@ class Kernel {
     public Response $response;
     public Session $session;
     public Database $db;
-    public ?DBModel $user;
+    public ?UserModel $user;
     public View $view;
 
 
@@ -44,7 +47,7 @@ class Kernel {
         if ($value) {
             $primaryKey = (new $this->userClass())->primaryKey();
             $this->user = (new $this->userClass())->findOne([$primaryKey => $value]);
-        } else { //If user does not exist on DB, logout
+        } else {
             $this->user = null;
         }
     }

@@ -7,7 +7,10 @@
  * @author Ryan Pienaar <ryan@ryanpienaar.dev>
  */
 
-namespace app\core;
+namespace app\core\db;
+
+use app\core\Kernel;
+use app\core\Model;
 
 abstract class DBModel extends Model
 {

@@ -7,7 +7,9 @@
  * @author Ryan Pienaar <ryan@ryanpienaar.dev>
  */
 
-namespace app\core;
+namespace app\core\db;
+
+use app\core\Kernel;
 
 class Database
 {
