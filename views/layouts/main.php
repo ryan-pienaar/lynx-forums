@@ -1,5 +1,7 @@
 <?php
+
     use app\core\Kernel;
+
 ?>
 
 <!doctype html>
@@ -26,6 +28,7 @@
                     <a class="nav-link" href="/contact">Contact</a>
                 </li>
             </ul>
+            <?php if (Kernel::isGuest()): ?>
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
@@ -34,6 +37,16 @@
                     <a class="nav-link" href="/register">Register</a>
                 </li>
             </ul>
+            <?php else: ?>
+            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <?php echo Kernel::$kernel->user->getDisplayName() ?>
+                    <a class="nav-link d-inline" href="/logout">
+                        (Logout)
+                    </a>
+                </li>
+            </ul>
+            <?php endif; ?>
         </div>
     </div>
 </nav>
