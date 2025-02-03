@@ -46,8 +46,8 @@ class Router {
             return $this->renderView($callback);
         }
         if (is_array($callback)) {
-            Application::$app->controller = new $callback[0](); //Makes the $callback an instance
-            $callback[0] = Application::$app->controller;
+            Kernel::$kernel->controller = new $callback[0](); //Makes the $callback an instance
+            $callback[0] = Kernel::$kernel->controller;
         }
         return call_user_func($callback, $this->request);
     }
@@ -68,9 +68,9 @@ class Router {
 
     protected function layoutContent()
     {
-        $layout = Application::$app->controller->layout;
+        $layout = Kernel::$kernel->controller->layout;
         ob_start();
-        include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
+        include_once Kernel::$ROOT_DIR . "/views/layouts/$layout.php";
         return ob_get_clean();
     }
 
@@ -80,7 +80,7 @@ class Router {
             $$key = $value;
         }
         ob_start();
-        include_once Application::$ROOT_DIR . "/views/$view.php";
+        include_once Kernel::$ROOT_DIR . "/views/$view.php";
         return ob_get_clean();
     }
 }
