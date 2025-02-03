@@ -49,7 +49,7 @@ class Router {
             Kernel::$kernel->controller = new $callback[0](); //Makes the $callback an instance
             $callback[0] = Kernel::$kernel->controller;
         }
-        return call_user_func($callback, $this->request);
+        return call_user_func($callback, $this->request, $this->response);
     }
 
     public function renderView($view, $params = [])
