@@ -9,6 +9,7 @@ abstract class Model
     public const RULE_MINLEN = 'minlen';
     public const RULE_MAXLEN = 'maxlen';
     public const RULE_MATCH = 'match';
+    public const RULE_UNIQUE = 'unique';
 
     public function loadData($data)
     {
@@ -47,8 +48,26 @@ abstract class Model
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
                     $this->addError($attribute, self::RULE_MATCH, $rule);
                 }
+                if ($ruleName === self::RULE_UNIQUE) {
+                    $className = $rule['class'];
+                    $uniqueAttribute = $rule['attribute'] ?? $attribute;
+                    $tableName = $className::tableName();
+                    $statement = Kernel::$kernel->db->prepare("SELECT * FROM $tableName WHERE $uniqueAttribute = :attribute");
+                    $statement->bindValue(":attribute", $value);
+                    $statement->execute();
+                    $record = $statement->fetchObject();
+
+                    if ($record) {
+                        $this->addError($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
+                    }
+
+                }
             }
         }
+        if (!$this->containsErrors($this->errors)) {
+            return true;
+        }
+        return false;
     }
 
     public function addError(string $attribute, string $rule, $params = [])
@@ -68,6 +87,7 @@ abstract class Model
             self::RULE_MINLEN => 'Min length of this field must be {min}',
             self::RULE_MAXLEN => 'Max length of this field must be {max}',
             self::RULE_MATCH => 'This field must be the same as {match}',
+            self::RULE_UNIQUE => 'An account with this {field} already exists'
         ];
     }
 
@@ -79,5 +99,10 @@ abstract class Model
     public function getFirstError($attribute)
     {
         return $this->errors[$attribute][0] ?? false;
+    }
+
+    public function containsErrors(array $errors): bool
+    {
+        return count($errors) > 0;
     }
 }
