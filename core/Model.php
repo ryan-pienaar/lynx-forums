@@ -22,6 +22,16 @@ abstract class Model
 
     abstract public function rules(): array;
 
+    public function labels() : array
+    {
+        return [];
+    }
+
+    public function getLabel($attribute)
+    {
+        return $this->labels()[$attribute] ?? $attribute;
+    }
+
     public array $errors = [];
 
     public function validate()
@@ -46,6 +56,7 @@ abstract class Model
                     $this->addError($attribute, self::RULE_MAXLEN, $rule);
                 }
                 if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
+                    $rule['match'] = $this->getLabel($rule['match']) ?? $rule['match'];
                     $this->addError($attribute, self::RULE_MATCH, $rule);
                 }
                 if ($ruleName === self::RULE_UNIQUE) {
@@ -58,7 +69,7 @@ abstract class Model
                     $record = $statement->fetchObject();
 
                     if ($record) {
-                        $this->addError($attribute, self::RULE_UNIQUE, ['field' => $attribute]);
+                        $this->addError($attribute, self::RULE_UNIQUE, ['field' => $this->getLabel($attribute) ?? $attribute]);
                     }
 
                 }
@@ -84,8 +95,8 @@ abstract class Model
         return [
             self::RULE_REQUIRED => 'This field is required',
             self::RULE_EMAIL => 'This field must be a valid email address',
-            self::RULE_MINLEN => 'Min length of this field must be {min}',
-            self::RULE_MAXLEN => 'Max length of this field must be {max}',
+            self::RULE_MINLEN => 'Must be at least {minlen} characters',
+            self::RULE_MAXLEN => 'Can not be more than {maxlen} characters',
             self::RULE_MATCH => 'This field must be the same as {match}',
             self::RULE_UNIQUE => 'An account with this {field} already exists'
         ];
