@@ -1,9 +1,10 @@
 <?php
+
 /**
- * Description of Kernel
+ * Class Kernel
  *
- * @author Ryan Pienaar
  * @package app\core
+ * @author Ryan Pienaar <ryan@ryanpienaar.dev>
  */
 
 namespace app\core;
@@ -12,6 +13,7 @@ class Kernel {
 
     public static string $ROOT_DIR;
 
+    public string $layout = 'main';
     public string $userClass ='';
     public Router $router;
     public Request $request;
@@ -19,10 +21,11 @@ class Kernel {
     public Session $session;
     public Database $db;
     public ?DBModel $user;
+    public View $view;
 
 
     public static Kernel $kernel;
-    public Controller $controller;
+    public ?Controller $controller = null;
     public function __construct($rootPath, array $conf)
     {
         $this->userClass = $conf['userClass'];
@@ -32,6 +35,7 @@ class Kernel {
         $this->response = new Response();
         $this->session = new Session();
         $this->router = new Router($this->request, $this->response);
+        $this->view = new View();
 
         $this->db = new Database($conf['db']);
 
@@ -46,7 +50,16 @@ class Kernel {
     }
     
     public function run() {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        }
+        catch(\Exception $e) {
+            $this->response->setStatusCode($e->getCode());
+            echo $this->view->renderView('error', [
+                'exception' => $e
+            ]);
+        }
+
     }
 
     public function setController(Controller $controller): void

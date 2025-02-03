@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Class Form
+ *
+ * @package app\core\form
+ * @author Ryan Pienaar <ryan@ryanpienaar.dev>
+ */
+
 namespace app\core\form;
 
 use app\core\Model;
@@ -19,6 +26,6 @@ class Form
 
     public function field(Model $model, $attribute)
     {
-        return new Field($model, $attribute);
+        return new InputField($model, $attribute);
     }
 }

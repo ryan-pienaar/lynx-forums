@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Class DBModel
+ *
+ * @package app\core
+ * @author Ryan Pienaar <ryan@ryanpienaar.dev>
+ */
+
 namespace app\core;
 
 abstract class DBModel extends Model

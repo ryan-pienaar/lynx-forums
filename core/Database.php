@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Class Database
+ *
+ * @package app\core
+ * @author Ryan Pienaar <ryan@ryanpienaar.dev>
+ */
+
 namespace app\core;
 
 class Database

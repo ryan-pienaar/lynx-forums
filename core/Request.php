@@ -1,8 +1,10 @@
 <?php
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/PHPClass.php to edit this template
+/**
+ * Class Request
+ *
+ * @package app\core
+ * @author Ryan Pienaar <ryan@ryanpienaar.dev>
  */
 
 namespace app\core;

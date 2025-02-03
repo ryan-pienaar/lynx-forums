@@ -1,22 +1,21 @@
 <?php
+
 /**
- * Description of Router
+ * Class Kernel
  *
- * @author Ryan Pienaar
  * @package app\core
+ * @author Ryan Pienaar <ryan@ryanpienaar.dev>
  */
 
 namespace app\core;
+
+use app\core\exception\NotFoundException;
 
 class Router {
     public Request $request;
     public Response $response;
     protected array $routes = [];
 
-    /**
-     * @param Request $request
-     * @param Response $response
-     */
     public function __construct(Request $request, Response $response)
     {
         $this->request = $request;
@@ -32,55 +31,31 @@ class Router {
     {
         $this->routes['post'][$path] = $callback;
     }
-    
+
+    /**
+     * @throws NotFoundException
+     */
     public function resolve()
     {
         $path = $this->request->getPath();
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
-            $this->response->setStatusCode(404);
-            return $this->renderView("404");
+            throw new NotFoundException();
         }
         if (is_string($callback)) {
-            return $this->renderView($callback);
+            return Kernel::$kernel->view->renderView($callback);
         }
         if (is_array($callback)) {
-            Kernel::$kernel->controller = new $callback[0](); //Makes the $callback an instance
-            $callback[0] = Kernel::$kernel->controller;
+            /** @var Controller $controller */
+            $controller = new $callback[0](); //Makes the $callback an instance
+            Kernel::$kernel->controller = $controller;
+            $controller->action = $callback[1];
+            foreach ($controller->getGates() as $gate) {
+                $gate->execute();
+            }
+            $callback[0] = $controller;
         }
         return call_user_func($callback, $this->request, $this->response);
-    }
-
-    public function renderView($view, $params = [])
-    {
-        $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyViewContent($view, $params);
-        return str_replace('{{content}}', $viewContent, $layoutContent);
-    }
-
-    //Deprecated function
-    public function renderContent($viewContent)
-    {
-        $layoutContent = $this->layoutContent();
-        return str_replace('{{content}}', $viewContent, $layoutContent);
-    }
-
-    protected function layoutContent()
-    {
-        $layout = Kernel::$kernel->controller->layout;
-        ob_start();
-        include_once Kernel::$ROOT_DIR . "/views/layouts/$layout.php";
-        return ob_get_clean();
-    }
-
-    protected function renderOnlyViewContent($view, $params)
-    {
-        foreach ($params as $key => $value) {
-            $$key = $value;
-        }
-        ob_start();
-        include_once Kernel::$ROOT_DIR . "/views/$view.php";
-        return ob_get_clean();
     }
 }

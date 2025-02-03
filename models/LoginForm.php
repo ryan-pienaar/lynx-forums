@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Class LoginForm
+ *
+ * @package app\models
+ * @author Ryan Pienaar <ryan@ryanpienaar.dev>
+ */
+
 namespace app\models;
 
 use app\core\Kernel;

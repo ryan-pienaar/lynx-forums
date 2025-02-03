@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Class User
+ *
+ * @package app\models
+ * @author Ryan Pienaar <ryan@ryanpienaar.dev>
+ */
+
 namespace app\models;
 
 use app\core\UserModel;

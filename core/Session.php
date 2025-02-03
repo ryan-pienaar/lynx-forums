@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Class Session
+ *
+ * @package app\core
+ * @author Ryan Pienaar <ryan@ryanpienaar.dev>
+ */
+
 namespace app\core;
 
 class Session
