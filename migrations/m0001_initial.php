@@ -4,7 +4,7 @@ class m0001_initial
 {
     public function up()
     {
-        $db = \ryanp\paprikacore\Kernel::$kernel->db;
+        $db = \ryan\lykacore\Kernel::$kernel->db;
         $SQL = "CREATE TABLE users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(255) NOT NULL,
@@ -19,7 +19,7 @@ class m0001_initial
 
     public function down()
     {
-        $db = \ryanp\paprikacore\Kernel::$kernel->db;
+        $db = \ryan\lykacore\Kernel::$kernel->db;
         $SQL = "DROP TABLE users;";
         $db->pdo->exec($SQL);
     }

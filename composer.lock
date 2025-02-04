@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4c5e3ba3eec8b8e28662a4dcb8c78a3c",
+    "content-hash": "1653f2e05b9c189bbb5a3c94261e66e4",
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -142,6 +142,44 @@
                 }
             ],
             "time": "2024-07-20T21:41:07+00:00"
+        },
+        {
+            "name": "ryanp/lyka-core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tempestdev-exe/lyka-core.git",
+                "reference": "317f275358dda235f57be161ba0f086fe8db42f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tempestdev-exe/lyka-core/zipball/317f275358dda235f57be161ba0f086fe8db42f5",
+                "reference": "317f275358dda235f57be161ba0f086fe8db42f5",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "framework",
+            "autoload": {
+                "psr-4": {
+                    "ryanp\\lykacore\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ryan Pienaar",
+                    "email": "ryan@ryanpienaar.dev"
+                }
+            ],
+            "description": "Little side project",
+            "support": {
+                "issues": "https://github.com/tempestdev-exe/lyka-core/issues",
+                "source": "https://github.com/tempestdev-exe/lyka-core/tree/master"
+            },
+            "time": "2025-02-04T01:19:32+00:00"
         },
         {
             "name": "ryanp/paprika-core",
@@ -509,6 +547,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "ryanp/lyka-core": 20,
         "ryanp/paprika-core": 20
     },
     "prefer-stable": false,

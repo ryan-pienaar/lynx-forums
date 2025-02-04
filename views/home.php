@@ -1,6 +1,6 @@
 <?php
 
-/** @var $this \ryanp\paprikacore\View */
+/** @var $this \ryan\lykacore\View */
 
 $this->title = 'Home';
 

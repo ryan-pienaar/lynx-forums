@@ -9,11 +9,11 @@
 
 namespace app\controllers;
 
-use ryanp\paprikacore\Controller;
-use ryanp\paprikacore\Kernel;
-use ryanp\paprikacore\middleware\AuthGate;
-use ryanp\paprikacore\Request;
-use ryanp\paprikacore\Response;
+use ryan\lykacore\Controller;
+use ryan\lykacore\Kernel;
+use ryan\lykacore\middleware\AuthGate;
+use ryan\lykacore\Request;
+use ryan\lykacore\Response;
 use app\models\LoginForm;
 use app\models\User;
 
