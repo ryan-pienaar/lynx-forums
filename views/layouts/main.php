@@ -1,6 +1,6 @@
 <?php
 
-    use ryan\lykacore\Kernel;
+    use ryanp\lykacore\Kernel;
 
 ?>
 

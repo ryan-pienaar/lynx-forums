@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use ryan\lykacore\Model;
+use ryanp\lykacore\Model;
 
 class ContactForm extends Model
 {

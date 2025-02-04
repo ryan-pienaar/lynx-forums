@@ -1,6 +1,6 @@
 <?php
 
-/** @var $this \ryan\lykacore\View */
+/** @var $this \ryanp\lykacore\View */
 
 $this->title = 'Register';
 
@@ -8,7 +8,7 @@ $this->title = 'Register';
 
 <h1>Register</h1>
 
-<?php $form = \ryan\lykacore\form\Form::begin('', "post") ?>
+<?php $form = \ryanp\lykacore\form\Form::begin('', "post") ?>
     <div class="row">
         <div class="col">
             <?php echo $form->field($model, 'firstname') ?>
@@ -23,4 +23,4 @@ $this->title = 'Register';
     <?php echo $form->field($model, 'password')->passwordField() ?>
     <?php echo $form->field($model, 'confirmPassword')->passwordField() ?>
     <button type="submit" class="btn btn-primary">Register</button>
-<?php \ryan\lykacore\form\Form::end() ?>
+<?php \ryanp\lykacore\form\Form::end() ?>
