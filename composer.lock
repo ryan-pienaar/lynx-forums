@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "414a92ed95ae888497705650c8740898",
+    "content-hash": "4c5e3ba3eec8b8e28662a4dcb8c78a3c",
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -142,6 +142,44 @@
                 }
             ],
             "time": "2024-07-20T21:41:07+00:00"
+        },
+        {
+            "name": "ryanp/paprika-core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tempestdev-exe/paprika-core.git",
+                "reference": "85ab948059ae30830699e3741d1d080f5b433c0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tempestdev-exe/paprika-core/zipball/85ab948059ae30830699e3741d1d080f5b433c0b",
+                "reference": "85ab948059ae30830699e3741d1d080f5b433c0b",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "framework",
+            "autoload": {
+                "psr-4": {
+                    "ryanp\\paprikacore\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ryan Pienaar",
+                    "email": "ryan@ryanpienaar.dev"
+                }
+            ],
+            "description": "Little side project",
+            "support": {
+                "issues": "https://github.com/tempestdev-exe/paprika-core/issues",
+                "source": "https://github.com/tempestdev-exe/paprika-core/tree/master"
+            },
+            "time": "2025-02-04T00:50:52+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -470,7 +508,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "ryanp/paprika-core": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {},

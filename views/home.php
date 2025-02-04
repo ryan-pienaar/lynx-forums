@@ -1,6 +1,6 @@
 <?php
 
-/** @var $this \app\core\View */
+/** @var $this \ryanp\paprikacore\View */
 
 $this->title = 'Home';
 

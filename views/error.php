@@ -1,7 +1,7 @@
 <?php
 
 /** @var $exception \Exception */
-/** @var $this \app\core\View */
+/** @var $this \ryanp\paprikacore\View */
 
 $this->title = "Error | " . $exception->getCode();
 

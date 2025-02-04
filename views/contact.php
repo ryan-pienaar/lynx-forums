@@ -1,9 +1,9 @@
 <?php
 
-/** @var $this \app\core\View */
+/** @var $this \ryanp\paprikacore\View */
 /** @var $model \app\models\ContactForm */
 
-use app\core\form\TextAreaField;
+use ryanp\paprikacore\form\TextAreaField;
 
 $this->title = 'Contact';
 
@@ -11,9 +11,9 @@ $this->title = 'Contact';
 
 <h1>Contact</h1>
 
-<?php $form = \app\core\form\Form::begin('', "post") ?>
+<?php $form = \ryanp\paprikacore\form\Form::begin('', "post") ?>
     <?php echo $form->field($model, 'subject') ?>
     <?php echo $form->field($model, 'email') ?>
     <?php echo new TextAreaField($model, 'body')?>
     <button type="submit" class="btn btn-primary">Submit</button>
-<?php \app\core\form\Form::end(); ?>
+<?php \ryanp\paprikacore\form\Form::end(); ?>

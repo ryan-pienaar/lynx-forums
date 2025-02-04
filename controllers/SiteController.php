@@ -10,10 +10,10 @@
 
 namespace app\controllers;
 
-use app\core\Kernel;
-use app\core\Controller;
-use app\core\Request;
-use app\core\Response;
+use ryanp\paprikacore\Kernel;
+use ryanp\paprikacore\Controller;
+use ryanp\paprikacore\Request;
+use ryanp\paprikacore\Response;
 use app\models\ContactForm;
 
 /**

@@ -9,8 +9,8 @@
 
 namespace app\models;
 
-use app\core\Kernel;
-use app\core\Model;
+use ryanp\paprikacore\Kernel;
+use ryanp\paprikacore\Model;
 
 class LoginForm extends Model
 {

@@ -9,7 +9,7 @@
 
 namespace app\models;
 
-use app\core\UserModel;
+use ryanp\paprikacore\UserModel;
 
 class User extends UserModel
 {

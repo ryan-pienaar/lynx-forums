@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use app\core\Model;
+use ryanp\paprikacore\Model;
 
 class ContactForm extends Model
 {

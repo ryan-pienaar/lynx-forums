@@ -1,6 +1,6 @@
 <?php
 
-    use app\core\Kernel;
+    use ryanp\paprikacore\Kernel;
 
 ?>
 
